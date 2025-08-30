@@ -4,12 +4,24 @@ FROM python:3.9-slim
 # Set working directory
 WORKDIR /app
 
-# Install only absolutely essential system dependencies
+# Install system dependencies with modern package names
 RUN apt-get update && apt-get install -y \
     libglib2.0-0 \
     libgomp1 \
+    libgl1-mesa-dev \
+    libgles2-mesa-dev \
+    libegl1-mesa-dev \
+    libxrender1 \
+    libsm6 \
+    libxext6 \
+    libfontconfig1 \
+    libice6 \
     && rm -rf /var/lib/apt/lists/* \
     && apt-get clean
+
+# Set environment variables to prevent OpenGL issues
+ENV DEBIAN_FRONTEND=noninteractive
+ENV QT_QPA_PLATFORM=offscreen
 
 # Install PyTorch CPU version first
 RUN pip install --no-cache-dir torch torchvision --index-url https://download.pytorch.org/whl/cpu
