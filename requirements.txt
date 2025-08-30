@@ -1,12 +1,3 @@
-# YOLO - this will automatically install compatible PyTorch CPU version
 ultralytics
-
-# Flask
-Flask==2.3.3
-
-# Image processing
-Pillow==10.0.1
-
-# Essential dependencies
-opencv-python-headless==4.8.1.78
-numpy==1.24.3
+Flask
+Pillow
